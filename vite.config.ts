@@ -12,11 +12,6 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 8081
   },
-  define: {
-  	'process.env': {
-      BASE_URL: '/'
-    }
-  },
   resolve: {
     alias: {
       '@': '/src'
