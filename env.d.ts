@@ -7,5 +7,12 @@ declare module '*.vue' {
   export default component;
 }
 interface ImportMetaEnv {
+  /**
+   * 项目API 请求地址
+   */
   readonly VITE_API_BASE_URL: string;
+  /**
+   * API key
+   */
+  readonly VITE_API_KEY: string;
 }
