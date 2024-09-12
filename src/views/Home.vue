@@ -2,10 +2,13 @@
    <section id="header-home">
       <div class="brand">
          <strong>OMDB</strong>
+        <div class="brand-right">
+         <set-lang></set-lang>
          <router-link to="/bookmark" class="bookmark">
             <img src="https://dl.dropbox.com/s/s9fb1d9vughng58/bookmark-64.png?dl=2"/>
             <span>{{ bookmarkCount }}</span>
          </router-link>
+        </div>
       </div>
       <div class="intro">
          <h3>
@@ -58,6 +61,7 @@
    import { apiSearchList } from '@/api';
    import Card from '@/components/Card.vue'
    import EmptyState from '@/components/EmptyState.vue'
+   import SetLang from '@/components/SetLang.vue'
    import { IBookMarkCache, IMovie } from '@/types/bookmark';
    import { onMounted, ref, watch } from "vue";
 

@@ -3,8 +3,8 @@ import en from './en-US/index';
 import cn from './zh-CN/index';
 
 export const LOCALE_OPTIONS = [
-  { label: '中文', value: 'zh-CN' },
-  { label: 'English', value: 'en-US' },
+  { label: '中文', value: 'zh-CN', shortName: '中' },
+  { label: 'English', value: 'en-US', shortName: 'EN' },
 ] as const
 
 const getLocale = () => {
