@@ -33,20 +33,7 @@
 
    const isEmptyList = ref(false)
    const listBookmarks = ref<Array<IMovie>>([])
-   const deleteTrig = ref(false)
-
-   const deleteItem = (id:string) => {
-      const localStr = localStorage.getItem('listBookmark_omdb') as string
-      let localInfo:IBookMarkCache = JSON.parse(localStr)
-
-      localInfo.bookmark.forEach( (item, index) => {
-         if ( item.IdMovie == id ) {
-            localInfo.bookmark.splice(index, 1)
-            localStorage.setItem('listBookmark_omdb', JSON.stringify(localInfo))
-            deleteTrig.value = !deleteTrig.value
-         }
-      })
-   }
+   
    const renderBookmark = () =>  {
       let local = localStorage.getItem('listBookmark_omdb')
       if (local) {
@@ -61,11 +48,19 @@
       }
    }
 
-   watch(() =>deleteTrig, () => {
-      setTimeout(() => {
-         renderBookmark()
-      }, 500)
-   })
+   const deleteItem = (id:string) => {
+      const localStr = localStorage.getItem('listBookmark_omdb') as string
+      let localInfo:IBookMarkCache = JSON.parse(localStr)
+
+      localInfo.bookmark.forEach( (item, index) => {
+         if ( item.IdMovie == id ) {
+            localInfo.bookmark.splice(index, 1)
+            localStorage.setItem('listBookmark_omdb', JSON.stringify(localInfo))
+            renderBookmark()
+         }
+      })
+   }
+
 
    onMounted(() => {
       renderBookmark()
