@@ -1,9 +1,9 @@
 <template>
-   <Nav nav-name="Bookmarks"></Nav>
+   <Nav :nav-name="$t('bookmark.navName')"></Nav>
    <section class="bookmark-view">
       <div v-if="isEmptyList" class="bookmark-empty">
          <strong>
-            there is no item you saved here, try saving a new item
+            {{ $t('bookmark.empty') }}
          </strong>
          <i class="far fa-sad-tear"></i>
       </div>
@@ -12,7 +12,7 @@
             <img :src="item.Poster" alt="item.Poster" />
             <div class="bookmark-layer">
                <router-link :to="'/details/'+item.IdMovie" >{{ item.Title }}</router-link>
-               <small>{{ item.Year }} | {{ item.Type }}</small>
+               <small>{{ item.Year }} | {{ $t('common.'+ item.Type.toLowerCase()) }}</small>
                <i @click="deleteItem(item.IdMovie)" class="fa fa-trash" ></i>
             </div>
          </div>

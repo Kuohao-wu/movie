@@ -9,9 +9,9 @@
       </div>
       <div class="intro">
          <h3>
-            Find your 
+            {{ $t('home.intro1') }}
             <br>
-            favorite movies
+            {{ $t('home.intro2') }}
          </h3>
       </div>
       <!-- Search bar -->
@@ -20,7 +20,7 @@
             <input 
             v-model="keyWord"
             v-on:keyup.enter="getData"
-            type="text" placeholder="Type title here" />
+            type="text" :placeholder="$t('home.search.placeholder')" />
             <button @click="getData" type="button">
                <i class="fa fa-search" ></i>
             </button>
@@ -28,7 +28,7 @@
       </div>
       <!-- Categorys -->
       <div class="category-wrapper">
-         <strong>Categories</strong>
+         <strong>{{ $t('home.categories') }}</strong>
          <div class="badge-wrapper">
             <template v-for="item in categorys" :key="item.id">
                <div 
@@ -36,7 +36,7 @@
                :class="badgeActive === item.name ? 'active' : ''"
                class="badge"> 
                   <img src="https://dl.dropbox.com/s/g35eijyruta8sv9/take-board-64.png?dl=2" alt="" />
-                  <p>{{ item.name }}</p>
+                  <p>{{ $t(`common.${item.name.toLowerCase()}`) }}</p>
                </div>
             </template>
          </div>
@@ -46,7 +46,7 @@
       
       <!-- Card components -->
       <div v-if="response && !isLoad" class="card-wrapper">
-         <strong>Search results for '{{ keyWordText }}'</strong>
+         <strong>{{ $t('home.searchResult') }} '{{ keyWordText }}'</strong>
          <template v-for="item in response" :key="item.imdbID">
             <Card :title="item.Title" :poster="item.Poster" :id-movie="item.imdbID" :year="item.Year" :type="item.Type" ></Card>
          </template>
@@ -60,7 +60,7 @@
    import EmptyState from '@/components/EmptyState.vue'
    import { IBookMarkCache, IMovie } from '@/types/bookmark';
    import { onMounted, ref, watch } from "vue";
-   
+
    defineOptions({
       name: 'Home'
    })
@@ -152,4 +152,3 @@
    @import './src/scss/view-styles/_home';
    
 </style>
-../api/apiKey

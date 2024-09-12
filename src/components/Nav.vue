@@ -2,7 +2,7 @@
    <section class="nav">
       <div @click="$router.go(-1)" class="nav-back">
          <i class="fa fa-chevron-left" ></i>
-         <strong>Back</strong>
+         <strong>{{ $t('components.nav.back') }}</strong>
       </div>
       <strong class="nav-title">
          {{ navName }}

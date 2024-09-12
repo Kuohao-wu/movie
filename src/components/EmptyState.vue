@@ -1,9 +1,9 @@
 <template>
    <div v-if="showEmptyState" class="state-wrapper">
       <div v-if="isEmptyState && !isLoad" class="content">
-         <strong>Search results will be displayed here</strong>
+         <strong>{{ $t('components.emptyState.tips') }}</strong>
          <router-link to="/bookmark" class="button-to-bookmark" >
-            To bookmark
+            {{ $t('components.emptyState.toBookMark') }}
          </router-link>
       </div>
       <div v-if="!isEmptyState && !isLoad" class="content">

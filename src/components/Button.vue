@@ -6,10 +6,10 @@
             @click="pushToBookmark" 
             class="button-bookmark-main" type="button">
             <template v-if="isBookmark">
-               Saved
+               {{ $t('components.button.saved') }}
             </template>
             <template v-else>
-               Bookmark
+               {{ $t('components.button.bookmark') }}
             </template>
          </button>
          <button @click="sharePage" class="button-share" type="button">
@@ -17,13 +17,15 @@
          </button>
       </div>
    </section>
-   <pre>
-      {{ test }}
-   </pre>
 </template>
 
 <script lang="ts" setup>
+import { IBookMarkCache } from '@/types/bookmark';
 import { ref, onMounted } from 'vue';
+import { useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
+
+const { t: $t } = useI18n()
 
 // 定义props类型
 interface IProps {
@@ -36,6 +38,8 @@ interface IProps {
    };
 }
 
+const route = useRoute()
+
 defineOptions({
    name: 'Button'
 })
@@ -47,7 +51,6 @@ const props = withDefaults(defineProps<IProps>(), {
 
 // 定义响应式状态
 const movie = ref({});
-const test = ref('');
 
 /**
  * 是否已经存在书签
@@ -91,7 +94,7 @@ const isDuplicate = (local: any, movie: any) => {
 const sharePage = () => {
    if (navigator.share) {
       navigator.share({
-         title: `OMDB Movie Details | ${props.detailsMovie.Title}`,
+         title: `${$t('components.button.shareText')} | ${props.detailsMovie.Title}`,
          url: ''
       }).then(result => {
          console.log(result);
@@ -102,18 +105,12 @@ const sharePage = () => {
 };
 
 const getData = () => {
-   const id = window.location.hash.split('/').pop();
-   const localStr = localStorage.getItem('listMovie_omdb');
+   const id = route.params.idMovie as string;
+   const localStr = localStorage.getItem('listBookmark_omdb');
 
    if (localStr) {
-      const localInfo = JSON.parse(localStr);
-
-      for (const item of localInfo) {
-         if (item.imdbID === id) {
-            test.value = item;
-            break;
-        }
-      }
+      const localInfo:IBookMarkCache = JSON.parse(localStr);
+      isBookmark.value = localInfo.bookmark.some((item: { IdMovie: string; }) => item.IdMovie === id);
    }
 }
 

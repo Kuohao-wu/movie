@@ -1,7 +1,7 @@
 <template>
    <section v-if="isWaiting" class="waiting">
       <div class="waiting-box">
-         <strong>Please wait, fetching data from server</strong>
+         <strong>{{ $t('components.waiting.tips') }}</strong>
          <i class="fa fa-smile-beam" ></i>
       </div>
    </section>

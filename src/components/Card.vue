@@ -5,7 +5,7 @@
       <router-link :to="'/details/' + idMovie">
         <h3>{{ title }}</h3>
       </router-link>
-      <small>{{ year + " | " + type }}</small>
+      <small>{{ year + " | " + $t('common.' + type) }}</small>
     </div>
   </div>
 </template>

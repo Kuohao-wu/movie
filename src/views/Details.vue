@@ -1,5 +1,5 @@
 <template>
-  <Nav nav-name="Details" />
+  <Nav :nav-name="$t('details.navName')" />
   <Waiting :is-waiting="isWaiting" />
   <section v-if="!isWaiting" class="details">
     <div class="details-main-info">
@@ -11,9 +11,9 @@
       <Rating :rate="parseFloat(movie.Rating)" />
     </div>
     <div class="details-opt-info">
-      <p>Plot</p>
+      <p>{{ $t('details.plot') }}</p>
       <p>{{ movie.Plot }}</p>
-      <p>Actors & Production by</p>
+      <p>{{ $t('details.actors') }} & {{ $t('details.production') }}</p>
       <p>{{ movie.Actors }} • {{ movie.Production }}</p>
     </div>
     <Button :details-movie="movie" />
